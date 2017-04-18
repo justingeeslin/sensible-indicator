@@ -3,7 +3,7 @@ node_js:
     - "0.10"
 addons:
     code_climate:
-        repo_token: 
+        repo_token: 8f7a4b9ea20b756fb04f330d417f71d89d8946d3b3ec5a8b0dcda40e894153e8
 script: node_modules/karma/bin/karma start karma.conf.js --single-run
 before_install:
     - export CHROME_BIN=chromium-browser
