@@ -1,7 +1,7 @@
 {
-  "name": "every",
+  "name": "sensible-expandcollapse",
   "version": "1.0.0",
-  "description": "The starting point for projects.",
+  "description": "Simple Expand/Collapse component.",
   "main": "index.js",
   "scripts": {
     "test": "./node_modules/karma/bin/karma start"
