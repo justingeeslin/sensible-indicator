@@ -14,10 +14,7 @@ var Component = function (options) {
 		targetEl : document.body,
 		stateChange : function(oldState, newState) {
 			self.log('Changing state from ' + oldState + ' to ' + newState);
-			self.targetEl.trigger('stateChange.sensible', {
-				'oldState': oldState,
-				'newState': newState
-			});
+			self.targetEl.trigger('stateChange.' + self.eventNamespace, [oldState, newState]);
 		},
 		preload: function() { },
 		postload: function() { },

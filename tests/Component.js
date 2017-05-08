@@ -66,9 +66,12 @@ describe('Component', function() {
 
     it('should emit state change event', function(done) {
       var eventEmitted = false;
-      aComponent.targetEl.on('stateChange.sensible', function(data) {
+      aComponent.targetEl.on('stateChange.sensible', function(e, oldState, newState) {
         eventEmitted = true;
         expect(eventEmitted).toBe(true)
+        console.log(e);
+        expect(oldState !== undefined).toBe(true)
+        expect(newState).toBe("Ponies")
         done()
       })
       aComponent.state = "Ponies";
