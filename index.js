@@ -1,6 +1,6 @@
 window.sensible = typeof sensible !== "undefined" ? sensible : {};
 sensible.classes = typeof sensible.classes !== "undefined" ? sensible.classes : {};
 
-sensible.classes.ExpandCollapse = require('./js/sensibleExpandCollapse.js');
+sensible.classes.Component = require('./js/sensibleComponent.js');
 
-module.exports = sensible.classes.ExpandCollapse;
+module.exports = sensible.classes.Component;
