@@ -18,6 +18,8 @@ var Component = function (options) {
 		},
 		preload: function() { },
 		postload: function() { },
+		// To avoid collisions and incase you want to namespace individual components
+		eventNamespace: 'sensible',
 		// Call render automatically upon construction becuse sometimes you just want to construct the thing. Disable if the component request data async and should not be show until it is loaded.
 		autoRender: true,
 	};

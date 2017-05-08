@@ -78,4 +78,24 @@ describe('Component', function() {
 
 		});
 
+    it('should set a custom namespace for state change event', function(done) {
+      var myNamespace = 'sensitiveSkin';
+      aComponent = new sensible.classes.Component({
+        el: $('<p id="lotion">Jergins</p>'),
+        eventNamespace: myNamespace
+      });
+      var eventEmitted = false;
+
+      aComponent.targetEl.on('stateChange.sensitiveSkin', function(e, oldState, newState) {
+        eventEmitted = true;
+        expect(eventEmitted).toBe(true)
+        console.log(e);
+        expect(oldState !== undefined).toBe(true)
+        expect(newState).toBe("Dark Wing Duck")
+        done()
+      })
+      aComponent.state = "Dark Wing Duck";
+
+		});
+
 });
