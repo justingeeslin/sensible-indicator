@@ -23,7 +23,6 @@ var Component = function (options) {
 		autoRender: true,
 	};
 
-	console.log('Choosing a default target..')
 	// Supply a default target only as a last resort. This way the body isn't selected every time.
 	if (typeof $contentTarget !== "undefined") {
 		defaults.target = $contentTarget;
@@ -41,7 +40,6 @@ var Component = function (options) {
 		}
 	}
 
-	console.log('Defining property target...')
 	Object.defineProperty(this, 'target', {
 		get: function() {
 			return target;
