@@ -45,7 +45,8 @@ var Component = function (options) {
 			this.stateChange(state, newState)
 			state = newState;
 			return true
-		}
+		},
+		enumerable: true
 	});
 
 	this.go = function(newState) {

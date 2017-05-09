@@ -98,4 +98,16 @@ describe('Component', function() {
 
 		});
 
+    it('should have a state property that is enumerable to be compatible with most extend functions in JavaScript', function() {
+      aComponent = new sensible.classes.Component({
+        el: $('<p id="turtles">Teenage Mutant Ninja Turtles</p>')
+      });
+      var arrayProps = []
+      for (var key in aComponent) {
+        arrayProps.push(key)
+      }
+      expect(arrayProps.indexOf('state') > -1).toBe(true)
+
+		});
+
 });
