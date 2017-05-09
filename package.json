@@ -1,7 +1,7 @@
 {
-  "name": "sensible-component",
+  "name": "sensible-sweetindicator",
   "version": "1.0.0",
-  "description": "A component from which all other components derive.",
+  "description": "A indicator about which page or section you are on.",
   "main": "index.js",
   "scripts": {
     "test": "./node_modules/karma/bin/karma start"
