@@ -1,20 +1,19 @@
 var Component = function (options) {
 	var self = this;
 
+	// Use the private members for custom hidden setters and getters.
 	// An identifier for the component's current state.
 	var state = '';
+	// The element to which this component (el) should be rendered/appended to.
+	var target = undefined;
 
 	var defaults = {
 		// To log or not to log..
 		debug: false,
 		el : $(document.createDocumentFragment()),
-		// The element to which this component (el) should be rendered/appended to.
-		target: 'body',
-		// The object / jQuery selection of the target
-		targetEl : document.body,
 		stateChange : function(oldState, newState) {
 			self.log('Changing state from ' + oldState + ' to ' + newState);
-			self.targetEl.trigger('stateChange.' + self.eventNamespace, [oldState, newState]);
+			self.target.trigger('stateChange.' + self.eventNamespace, [oldState, newState]);
 		},
 		preload: function() { },
 		postload: function() { },
@@ -24,20 +23,43 @@ var Component = function (options) {
 		autoRender: true,
 	};
 
+	console.log('Choosing a default target..')
+	// Supply a default target only as a last resort. This way the body isn't selected every time.
 	if (typeof $contentTarget !== "undefined") {
-		defaults.targetEl = $contentTarget;
+		defaults.target = $contentTarget;
 	}
-
-	$.extend(this, defaults, options);
-
-	// Just incase the targetEl is not a jQuery selction or is a plain dom element, select it.
-	this.targetEl = $(this.targetEl);
+	else if (typeof options !== "undefined" && typeof options.target !== "undefined") {
+		target = options.target
+	}
+	else {
+		target = $(document.body);
+	}
 
 	this.log = function(msg) {
 		if (self.debug) {
 			console.log(msg);
 		}
 	}
+
+	console.log('Defining property target...')
+	Object.defineProperty(this, 'target', {
+		get: function() {
+			return target;
+		},
+		set: function(arg) {
+			// If the argument is a string, it is a selector convert it to a jQuery object
+			if (typeof arg === "string") {
+				target = $(arg);
+			}
+			else if (arg instanceof jQuery) {
+				target = arg
+			}
+			else {
+				console.warn('Unregonized target selector.', arg);
+			}
+		},
+		enumerable: true
+	});
 
 	Object.defineProperty(this, 'state', {
 		get: function() { return state; },
@@ -49,6 +71,8 @@ var Component = function (options) {
 		enumerable: true
 	});
 
+	$.extend(this, defaults, options);
+
 	this.go = function(newState) {
 		this.state = newState;
 	}
@@ -57,7 +81,7 @@ var Component = function (options) {
 	this.render = function() {
 		self.preload();
 		self.log('Rendering..');
-		self.targetEl.append(this.el);
+		self.target.append(this.el);
 		self.postload();
 	}
 

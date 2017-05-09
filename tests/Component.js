@@ -9,7 +9,7 @@ describe('Component', function() {
       aComponent = new sensible.classes.Component({
         el: $('<p id="turtles">Teenage Mutant Ninja Turtles</p>')
       });
-      expect(aComponent.targetEl.find('#turtles').length > 0).toBe(true)
+      expect(aComponent.target.find('#turtles').length > 0).toBe(true)
 
 		});
 
@@ -19,7 +19,7 @@ describe('Component', function() {
         autoRender: false
       });
       aComponent.render();
-      expect(aComponent.targetEl.find('#pony').length > 0).toBe(true)
+      expect(aComponent.target.find('#pony').length > 0).toBe(true)
 		});
 
     it('should call preload callback on render', function() {
@@ -64,9 +64,18 @@ describe('Component', function() {
 
 		});
 
+    it('should set state via options', function() {
+      aComponent = new sensible.classes.Component({
+        state: 'Shredder',
+        el: $('<p id="turtles">Teenage Mutant Ninja Turtles</p>')
+      });
+      expect(aComponent.state).toBe("Shredder")
+
+		});
+
     it('should emit state change event', function(done) {
       var eventEmitted = false;
-      aComponent.targetEl.on('stateChange.sensible', function(e, oldState, newState) {
+      aComponent.target.on('stateChange.sensible', function(e, oldState, newState) {
         eventEmitted = true;
         expect(eventEmitted).toBe(true)
         console.log(e);
@@ -78,6 +87,24 @@ describe('Component', function() {
 
 		});
 
+    it('should set target as a string selector', function() {
+      aComponent = new sensible.classes.Component({
+        target: 'html',
+        el: $('<p id="turtles">Teenage Mutant Ninja Turtles</p>')
+      });
+      expect(aComponent.target[0]).toBe($('html')[0])
+
+		});
+
+    it('should set target as a jQuery object', function() {
+      aComponent = new sensible.classes.Component({
+        target: $('html'),
+        el: $('<p id="turtles">Teenage Mutant Ninja Turtles</p>')
+      });
+      expect(aComponent.target[0]).toBe($('html')[0])
+
+		});
+
     it('should set a custom namespace for state change event', function(done) {
       var myNamespace = 'sensitiveSkin';
       aComponent = new sensible.classes.Component({
@@ -86,7 +113,7 @@ describe('Component', function() {
       });
       var eventEmitted = false;
 
-      aComponent.targetEl.on('stateChange.sensitiveSkin', function(e, oldState, newState) {
+      aComponent.target.on('stateChange.sensitiveSkin', function(e, oldState, newState) {
         eventEmitted = true;
         expect(eventEmitted).toBe(true)
         console.log(e);
