@@ -56,7 +56,7 @@ var SweetIndicator = function (opts) {
 	container.insertBefore(this.target.filter(':first'));
 
 	this.stateChange = function(oldState, newState) {
-		console.log('State Change: ' + oldState + ', ' + newState)
+		myself.log('Indicator State Change: ' + oldState + ', ' + newState)
 		if (newState.length < 0) {
 			//Activate the first item
 			self.log('Indicating the first item' + items.filter(':first').text() + ' from the following items');
