@@ -17,10 +17,12 @@ var SweetIndicator = function (opts) {
 	var items = this.target.find(this.itemSelector);
 
 	var container = $('<div class="sensible indicator"></div>')
+	container.css('position', 'absolute');
 
 	var indicator = this.indicator = $('<div class="bar">&nbsp;</div>');
-	indicator.css('background-color', this.color);
 	indicator.css('position', 'absolute');
+	indicator.css('background-color', this.color);
+
 	indicator.css('left', '0');
 	indicator.css('top', '0');
 	container.append(indicator);

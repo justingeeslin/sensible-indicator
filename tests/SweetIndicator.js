@@ -27,7 +27,7 @@ describe('SweetIndicator', function() {
   		var distanceToMove = itemTop - containerTop;
       $('#one').click();
       window.setTimeout(function() {
-        // expect(theSweetness.indicator.position().top).toBe(containerTop + itemTop)
+        expect(theSweetness.indicator.position().top).toBe(containerTop + itemTop)
         expect(theSweetness.state).toBe('#one')
         done()
       }, 500)
