@@ -4,7 +4,7 @@ describe('SweetIndicator', function() {
       container = $('<div id="content"></div>');
       $(document.body).append(container);
 
-      container.append('<ul><li id="one">Item 1</li><li id="two">Item 2<ul><li id="three">Item 2.1</li><li>Item 2.2</li><li>Item 2.3</li></ul></li><li>Item 3</li></ul>');
+      container.append('<ul><li id="one">Item 1</li><li id="two">Item 2<ul><li id="three">Item 2.1</li><li>Item 2.2</li><li>Item 2.3</li></ul></li><li id="three">Item 3</li></ul>');
 
     });
 
