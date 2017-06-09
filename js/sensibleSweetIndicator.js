@@ -29,7 +29,7 @@ var SweetIndicator = function (opts) {
 
 	items.on('click go', function() {
 		self.log('Clicking/Going on this item. Setting the state..')
-		self.state = '#' + $(this)[0].id;
+		self.state = $(this)[0].id;
 	})
 
 	var indicate = function(el) {
@@ -64,7 +64,7 @@ var SweetIndicator = function (opts) {
 		}
 		else {
 			self.log('Indicating an item for the following state:' + newState);
-			indicate(items.filter(newState))
+			indicate(items.filter('#' + newState))
 		}
 	}
 
