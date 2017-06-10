@@ -44,7 +44,6 @@ var SweetIndicator = function (opts) {
 
 
 		//Change the height of the bar and Slide to the item
-		console.log('Moving the indicator to: ' + distanceToMove + 'px');
 		indicator.animate({
 			top: distanceToMove + 'px',
 			height: el.height()
