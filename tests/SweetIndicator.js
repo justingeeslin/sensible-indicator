@@ -27,8 +27,8 @@ describe('SweetIndicator', function() {
   		var distanceToMove = itemTop - containerTop;
       $('#one').click();
       window.setTimeout(function() {
-        expect(theSweetness.indicator.position().top).toBe(containerTop + itemTop)
-        expect(theSweetness.state).toBe('#one')
+        expect(theSweetness.indicator.position().top).toBe(0)
+        expect(theSweetness.state).toBe('one')
         done()
       }, 500)
     });
@@ -38,7 +38,7 @@ describe('SweetIndicator', function() {
         target : container,
         itemSelector : 'li',
         color : '#333',
-        state: '#two'
+        state: 'two'
       });
       //The height (from the window) of the container
   		var containerTop = container.position().top
@@ -48,7 +48,36 @@ describe('SweetIndicator', function() {
   		var distanceToMove = itemTop - containerTop;
       window.setTimeout(function() {
         // expect(theSweetness.indicator.css('top')).toBe(distanceToMove)
-        expect(theSweetness.state).toBe('#two')
+        expect(theSweetness.state).toBe('two')
+        done()
+      }, 500)
+    });
+
+    it('Should indicate via state assignment', function(done) {
+      theSweetness = new sensible.classes.SweetIndicator({
+        target : container,
+        itemSelector : 'li',
+        color : '#333',
+      });
+      theSweetness.state = 'one';
+      window.setTimeout(function() {
+        expect(theSweetness.state).toBe('one')
+        done()
+      }, 500)
+    });
+
+    it('Should use the state as preprocessed by the function', function(done) {
+      theSweetness = new sensible.classes.SweetIndicator({
+        target : container,
+        itemSelector : 'li',
+        color : '#333',
+        statePreprocess: function(s) {
+          return s.split('~')[0];
+        }
+      });
+      theSweetness.state = 'one~remove';
+      window.setTimeout(function() {
+        expect(theSweetness.state).toBe('one')
         done()
       }, 500)
     });
