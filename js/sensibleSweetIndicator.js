@@ -33,6 +33,10 @@ var SweetIndicator = function (opts) {
 	})
 
 	var indicate = function(el) {
+		if (el === undefined || el.length <= 0) {
+			console.warn('Attempting to indicate an element that is not there.', el);
+			return;
+		}
 		self.log('Clicked/Activated the item. Indicating: ' + el.text()  + ' with a height of ' + el.height());
 
 		//The height (from the window) of the container
