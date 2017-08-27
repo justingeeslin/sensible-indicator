@@ -4,7 +4,6 @@ var SweetIndicator = function (opts) {
 	var self = this;
 
 	var defaults = {
-		target : $(document.body),
 		color : 'black',
 		itemSelector : 'li'
 	};
