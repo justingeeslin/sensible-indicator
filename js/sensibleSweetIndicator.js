@@ -1,5 +1,5 @@
 var extend = require('extend')
-require('sensible-component')
+var Component = require('sensible-component')
 var SweetIndicator = function (opts) {
 	var self = this;
 
@@ -10,7 +10,7 @@ var SweetIndicator = function (opts) {
 
 	$.extend(this, defaults, opts);
 
-	self = extend(self, new sensible.classes.Component(self))
+	self = extend(self, new Component(self))
 
 	// Items that might be clicked on.
 	var items = this.target.find(this.itemSelector);
